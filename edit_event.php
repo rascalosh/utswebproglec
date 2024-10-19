@@ -65,19 +65,69 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-<form method="post" enctype="multipart/form-data">
-    <input type="text" name="name" value="<?php echo htmlspecialchars($event['name'] ?? '', ENT_QUOTES); ?>" required>
-    <input type="date" name="date" value="<?php echo htmlspecialchars($event['date'] ?? '', ENT_QUOTES); ?>" required>
-    <input type="time" name="time" value="<?php echo htmlspecialchars($event['time'] ?? '', ENT_QUOTES); ?>" required>
-    <input type="text" name="location" value="<?php echo htmlspecialchars($event['location'] ?? '', ENT_QUOTES); ?>" required>
-    <textarea name="description"><?php echo htmlspecialchars($event['description'] ?? '', ENT_QUOTES); ?></textarea>
-    <input type="number" name="max_participants" value="<?php echo htmlspecialchars($event['max_participants'] ?? '', ENT_QUOTES); ?>" required>
-    <input type="file" name="image">
-    <input type="file" name="banner">
-    <select name="status">
-        <option value="open" <?php if (isset($event['status']) && $event['status'] == 'open') echo 'selected'; ?>>Open</option>
-        <option value="closed" <?php if (isset($event['status']) && $event['status'] == 'closed') echo 'selected'; ?>>Closed</option>
-        <option value="canceled" <?php if (isset($event['status']) && $event['status'] == 'canceled') echo 'selected'; ?>>Canceled</option>
-    </select>
-    <button type="submit" name="edit_event">Update Event</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex justify-center items-center relative">
+
+    <!-- Back Button at Top Left -->
+    <a href="indexadmin.php" class="absolute top-5 left-5 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300">
+        &larr; Back to Main Page
+    </a>
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+        <h1 class="text-2xl font-bold mb-6 text-center">Edit Event</h1>
+        <form method="post" enctype="multipart/form-data" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Event Name</label>
+                <input type="text" name="name" value="<?php echo $event['name'] ?? ''; ?>" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Date</label>
+                <input type="date" name="date" value="<?php echo $event['date'] ?? ''; ?>" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Time</label>
+                <input type="time" name="time" value="<?php echo $event['time'] ?? ''; ?>" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Location</label>
+                <input type="text" name="location" value="<?php echo $event['location'] ?? ''; ?>" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea name="description" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"><?php echo $event['description'] ?? ''; ?></textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Max Participants</label>
+                <input type="number" name="max_participants" value="<?php echo $event['max_participants'] ?? ''; ?>" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Upload Image</label>
+                <input type="file" name="image" class="mt-1 block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-600 hover:file:bg-indigo-100">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Upload Banner</label>
+                <input type="file" name="banner" class="mt-1 block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-600 hover:file:bg-indigo-100">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Status</label>
+                <select name="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <option value="open" <?php echo ($event['status'] == 'open') ? 'selected' : ''; ?>>Open</option>
+                    <option value="closed" <?php echo ($event['status'] == 'closed') ? 'selected' : ''; ?>>Closed</option>
+                    <option value="canceled" <?php echo ($event['status'] == 'canceled') ? 'selected' : ''; ?>>Canceled</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="submit" name="edit_event" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300">Update Event</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

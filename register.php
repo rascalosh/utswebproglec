@@ -29,31 +29,51 @@ if (isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body >
-    <div >
-        <h1 >Register</h1>
-        <a href="login.php" >Back to Login</a>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6 text-center">Register</h1>
+
+        
         <?php if (isset($error)): ?>
-            <p ><?php echo $error; ?></p>
+            <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
+                <?php echo $error; ?>
+            </div>
         <?php endif; ?>
-        <form action="register.php" method="post">
-            <div >
-                <label >Username:</label>
-                <input type="text" name="username"  required>
-            </div>
-            <div >
-                <label >Password:</label>
-                <input type="password" name="password"  required>
-            </div>
-            <div >
-                <label >Email:</label>
-                <input type="email" name="email"  required>
-            </div>
+
+        
+        <form action="register.php" method="post" class="space-y-4">
             <div>
-                <button type="submit" name="register" >Register</button>
+                <label for="username" class="block text-gray-700 font-medium">Username</label>
+                <input type="text" name="username" id="username" class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            </div>
+
+            
+            <div>
+                <label for="email" class="block text-gray-700 font-medium">Email</label>
+                <input type="email" name="email" id="email" class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            </div>
+
+            
+            <div>
+                <label for="password" class="block text-gray-700 font-medium">Password</label>
+                <input type="password" name="password" id="password" class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            </div>
+
+            
+            <div>
+                <button type="submit" name="register" class="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    Register
+                </button>
             </div>
         </form>
+
+        
+        <div class="mt-6 text-center">
+            <a href="login.php" class="text-indigo-600 hover:underline">Back to Login</a>
+        </div>
     </div>
 </body>
 </html>

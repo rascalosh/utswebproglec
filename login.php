@@ -17,10 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['usertype'] = $user['usertype'];
-            if($_SESSION['usertype'] == 'user'){
-            header("Location: index.php");}
-            else if($_SESSION['usertype'] == 'admin'){
-            header("Location: indexadmin.php");
+            if ($_SESSION['usertype'] == 'user') {
+                header("Location: index.php");
+            } else if ($_SESSION['usertype'] == 'admin') {
+                header("Location: indexadmin.php");
             }
             exit();
         } else {
@@ -38,28 +38,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div>
-        <h1>Login</h1>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6 text-center">Login</h1>
+
+        <!-- Error Message -->
         <?php if (!empty($error)): ?>
-            <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
+            <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
+                <?php echo htmlspecialchars($error); ?>
+            </div>
         <?php endif; ?>
-        <form action="login.php" method="post">
+
+        <!-- Login Form -->
+        <form action="login.php" method="post" class="space-y-4">
+            <!-- Username Field -->
             <div>
-                <label>Username:</label>
-                <input type="text" name="username" required>
+                <label for="username" class="block text-gray-700 font-medium">Username</label>
+                <input type="text" name="username" id="username" class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
             </div>
+
+            <!-- Password Field -->
             <div>
-                <label>Password:</label>
-                <input type="password" name="password" required>
+                <label for="password" class="block text-gray-700 font-medium">Password</label>
+                <input type="password" name="password" id="password" class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
             </div>
+
+            <!-- Submit Button -->
             <div>
-                <button type="submit" name="login">Login</button>
+                <button type="submit" name="login" class="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    Login
+                </button>
             </div>
         </form>
-        <div>
-            <a href="register.php">Don't have an account? Register here</a>
+
+        <div class="mt-6 text-center">
+            <a href="register.php" class="text-indigo-600 hover:underline">Don't have an account? Register here</a>
         </div>
     </div>
 </body>

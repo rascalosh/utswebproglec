@@ -16,6 +16,6 @@ if (!isset($_SESSION['user_id'])) {
     <title>Document</title>
 </head>
 <body>
-    <p>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>! <a href="logout.php">Logout</a></p>
+    <p>Welcome, <?php echo $_SESSION['username']; ?>! <a href="logout.php">Logout</a></p>
 </body>
 </html>
