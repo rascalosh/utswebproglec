@@ -44,14 +44,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_event'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Event</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex justify-center items-center relative">
-    <a href="indexadmin.php" class="absolute top-5 left-5 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300">
-        &larr; Back to Main Page
-    </a>
+<body class="font-[Poppins] bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] text-gray-900 flex flex-col">
+    
+    <!-- Navbar -->
+    <header class="bg-[#FFE1FF] py-3">
+        <nav class="flex justify-between items-center w-[92%] mx-auto">
+            <div>
+                <img class="w-20" src="assets/baileo3.png" alt="...">
+            </div>
+            <div class="nav-links duration-500 md:static absolute bg-[#FFE1FF] md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
+                <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
+                    <li>
+                        <a class="text-gray-700 hover:text-pink-900 transition duration-100 ease-in-out" href="indexadmin.php">Dashboard</a>
+                    </li>
+                    <li>
+                        <a class="text-gray-700 hover:text-pink-900 transition duration-100 ease-in-out" href="create_event.php">Create Event</a>
+                    </li>
+                    <li>
+                        <a class="text-gray-700 hover:text-pink-900 transition duration-100 ease-in-out" href="user_management.php">Manage Users</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex items-center gap-6"> 
+                <a href="login.php" class="bg-[#7E60BF] text-white px-5 py-2 rounded-full hover:bg-[#CDC1FF]">Log Out</a>
+                <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-2xl cursor-pointer md:hidden"></ion-icon>
+            </div>
+        </nav>
+    </header>
 
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
-        <h1 class="text-2xl font-bold mb-6 text-center">Create New Event</h1>
+    <script>
+        const navLinks = document.querySelector('.nav-links');
+        function onToggleMenu(e){
+            e.name = e.name === 'menu' ? 'close' : 'menu';
+            navLinks.classList.toggle('top-[9%]');
+        }
+    </script>
+
+    <!-- Main Content -->
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg mx-auto mt-8">
+        <h1 class="text-2xl font-bold mb-6 text-center flex items-center justify-center space-x-2">
+        <ion-icon name="add-circle" class="text-3xl text-indigo-600"></ion-icon>
+        <span>Create New Event</span>
+    </h1>
+
         <form method="post" enctype="multipart/form-data" class="space-y-4">
             <div>
                 <label class="block text-sm font-medium text-gray-700">Event Name</label>
@@ -86,9 +126,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_event'])) {
                 <input type="file" name="banner" class="mt-1 block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-600 hover:file:bg-indigo-100">
             </div>
             <div class="text-center">
-                <button type="submit" name="create_event" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300">Create Event</button>
+                <button type="submit" name="create_event" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 focus:ring-4 focus:ring-purple-300">Create Event</button>
             </div>
         </form>
     </div>
+<footer class="bg-[#FFE1FF] text-gray-700 mt-10 py-6">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="text-center md:text-left">
+                <p class="text-sm">&copy; <?php echo date("Y"); ?> Baileo Event Organizer. All rights reserved.</p>
+            </div>
+
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <a href="#" class="text-gray-600 hover:text-gray-900"><ion-icon name="logo-facebook" class="text-xl"></ion-icon></a>
+                <a href="#" class="text-gray-600 hover:text-gray-900"><ion-icon name="logo-twitter" class="text-xl"></ion-icon></a>
+                <a href="#" class="text-gray-600 hover:text-gray-900"><ion-icon name="logo-instagram" class="text-xl"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
