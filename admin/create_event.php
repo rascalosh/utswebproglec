@@ -18,16 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_event'])) {
     $image_path = '';
     $banner_path = '';
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        $image_path = '../uploads/' . basename($_FILES['image']['name']);
+        $image_path = 'uploads/' . basename($_FILES['image']['name']);
         move_uploaded_file($_FILES['image']['tmp_name'], $image_path);
     }
 
     if (isset($_FILES['banner']) && $_FILES['banner']['error'] == 0) {
-        $banner_path = '../uploads/' . basename($_FILES['banner']['name']);
+        $banner_path = 'uploads/' . basename($_FILES['banner']['name']);
         move_uploaded_file($_FILES['banner']['tmp_name'], $banner_path);
     }
 
-    // Insert event into database
+    
     $stmt = $conn->prepare("INSERT INTO events (name, date, time, location, description, max_participants, image_path, banner_path, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssisss", $name, $date, $time, $location, $description, $max_participants, $image_path, $banner_path, $status);
     $stmt->execute();
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_event'])) {
                 </ul>
             </div>
             <div class="flex items-center gap-6"> 
-                <a href="login.php" class="bg-[#7E60BF] text-white px-5 py-2 rounded-full hover:bg-[#CDC1FF]">Log Out</a>
+                <a href="logout.php" class="bg-[#7E60BF] text-white px-5 py-2 rounded-full hover:bg-[#CDC1FF]">Log Out</a>
                 <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-2xl cursor-pointer md:hidden"></ion-icon>
             </div>
         </nav>

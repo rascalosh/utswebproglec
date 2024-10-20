@@ -88,7 +88,7 @@ $result = $stmt->get_result();
             </ul>
         </div>
         <div class="flex items-center gap-6"> 
-            <a href="login.php" class="bg-[#7E60BF] text-white px-5 py-2 rounded-full hover:bg-[#CDC1FF]">Log Out</a>
+            <a href="logout.php" class="bg-[#7E60BF] text-white px-5 py-2 rounded-full hover:bg-[#CDC1FF]">Log Out</a>
             <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-2xl cursor-pointer md:hidden"></ion-icon>
         </div>
     </nav>
@@ -122,10 +122,14 @@ $result = $stmt->get_result();
                         <td class="py-2 px-4 border-b"><?php echo $row['email']; ?></td>
                         <td class="py-2 px-4 border-b"><?php echo $row['registered_events']; ?></td>
                         <td class="py-2 px-4 border-b">
+                        <?php if($row['username'] == 'admin'): ?>
+                            <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 cursor-not-allowed">Delete</button>
+                        <?php else :?>
                         <form action="user_management.php" method="get" class="inline" onsubmit="return confirm('Are you sure you want to delete this user?');">
                             <input type="hidden" name="delete_id" value="<?php echo $row['id']; ?>">
                                 <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Delete</button>
                         </form>
+                        <?php endif;?>
                         </td>
                     </tr>
                 <?php endwhile; ?>

@@ -41,7 +41,7 @@ $total_events = $total_row['total'];
 
 
 if (!isset($_SESSION['usertype']) || $_SESSION['usertype'] !== 'admin') {
-    header("Location: .../login.php");
+    header("Location: ../login.php");
     exit();
 }
 
