@@ -4,12 +4,12 @@ session_start();
 
 $user_id = $_SESSION['user_id'];
 
-// Fetch user details
+
 $query = "SELECT * FROM users WHERE id = $user_id";
 $result = $conn->query($query);
 $user = $result->fetch_assoc();
 
-// Fetch events registered by the user
+
 $events_query = "
     SELECT events.name, events.date, events.location 
     FROM registrations 
