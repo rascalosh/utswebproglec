@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             if ($_SESSION['usertype'] == 'user') {
                 header("Location: index.php");
             } else if ($_SESSION['usertype'] == 'admin') {
-                header("Location: indexadmin.php");
+                header("Location: ./admin/indexadmin.php");
             }
             exit();
         } else {
