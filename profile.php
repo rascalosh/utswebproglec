@@ -67,7 +67,15 @@ $events_result = $conn->query($events_query);
         <h1 class="text-3xl font-bold mb-4">My Profile</h1>
         <h3 class="text-gray-600"><strong>Username:</strong> <?php echo $user['username']; ?></h3>
         <p class="text-gray-600"><strong>Email:</strong> <?php echo $user['email']; ?></p>
-
+        <p class="text-gray-600"><strong>Description: </strong> <?php echo htmlspecialchars($user['description']); ?></p>
+    <p>
+        <strong>Profile Image:</strong> <br>
+        <?php if ($user['image']): ?>
+            <img src="<?php echo htmlspecialchars($user['image']); ?>" alt="Profile Image" width="150">
+        <?php else: ?>
+            No profile image uploaded.
+        <?php endif; ?>
+    </p>
         <a href="edit_profile.php" class="mt-4 inline-block bg-purple-600 text-white py-2 px-4 rounded">Edit Profile</a>
     </div>
 

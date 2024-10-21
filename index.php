@@ -48,13 +48,14 @@ $result = $conn->query($query);
             </div>
     </header>
 
-    <script>
+    <<script>
         const navLinks = document.querySelector('.nav-links')
         function onToggleMenu(e){
             e.name = e.name === 'menu' ? 'close' : 'menu'
             navLinks.classList.toggle('top-[9%]')
-        }
-    </script>
+            navLinks.classList.toggle('z-50')
+        }
+    </script>
 <!-- Event List -->
 <div class="container mx-auto mt-8">
     <h2 class="text-3xl font-bold text-purple-700 mb-2 flex items-center justify-center">

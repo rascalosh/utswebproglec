@@ -6,10 +6,14 @@ include 'koneksi.php';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
-    $username = trim($conn->real_escape_string($_POST['username']));
-    $password = trim($conn->real_escape_string($_POST['password']));
+    $input = trim($_POST['username_or_email']);
+    $password = trim($_POST['password']);
 
-    $result = $conn->query("SELECT * FROM users WHERE username='$username'");
+    
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
+    $stmt->bind_param("ss", $input, $input); 
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
@@ -18,19 +22,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['usertype'] = $user['usertype'];
             if ($_SESSION['usertype'] == 'user') {
-                h6eader("Location: index.php");
+                header("Location: index.php");
             } else if ($_SESSION['usertype'] == 'admin') {
                 header("Location: ./admin/indexadmin.php");
             }
             exit();
         } else {
-            $error = "Invalid username or password";
+            $error = "Invalid username/email or password";
         }
     } else {
-        $error = "Invalid username or password";
+        $error = "Invalid username/email or password";
     }
+
+    $stmt->close(); 
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
         <form action="login.php" method="post" class="space-y-4">
             <!-- Username Field -->
             <div>
-                <label for="username" class="block text-gray-700 font-medium">Username</label>
-                <input type="text" name="username" id="username" class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                <label for="username_or_email" class="block text-gray-700 font-medium">Username or Email</label>
+                <input type="text" name="username_or_email" id="username_or_email" class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
             </div>
 
             <!-- Password Field -->

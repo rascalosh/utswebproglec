@@ -85,7 +85,7 @@ if (isset($_GET['id'])) {
         &larr; Back to Main Page
     </a>
 
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg mt-10 mb-10">
         <h1 class="text-2xl font-bold mb-6 text-center">Edit Event</h1>
         <form method="post" enctype="multipart/form-data" class="space-y-4">
             <div>

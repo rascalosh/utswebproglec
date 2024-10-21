@@ -17,19 +17,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $description = $_POST['description'];
+    $image_path = $user['image'];
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+        $image_path = 'admin/uploads/' . basename($_FILES['image']['name']);
+        move_uploaded_file($_FILES['image']['tmp_name'], $image_path);
+    }
+
     
     // Update query
     if (!empty($password)) {
         // If password is provided, hash it before updating
         $password_hash = password_hash($password, PASSWORD_BCRYPT);
-        $update_query = "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?";
+        $update_query = "UPDATE users SET username = ?, email = ?, description = ?, image = ?, password = ? WHERE id = ?";
         $stmt = $conn->prepare($update_query);
-        $stmt->bind_param("sssi", $username, $email, $password_hash, $user_id);
+        $stmt->bind_param("sssssi", $username, $email, $description, $image_path, $password_hash, $user_id);
     } else {
         // If no password is provided, update only username and email
-        $update_query = "UPDATE users SET username = ?, email = ? WHERE id = ?";
+        $update_query = "UPDATE users SET username = ?, email = ?, description = ?, image = ? WHERE id = ?";
         $stmt = $conn->prepare($update_query);
-        $stmt->bind_param("ssi", $username, $email, $user_id);
+        $stmt->bind_param("ssssi", $username, $email, $description, $image_path, $user_id);
     }
 
     // Execute the update query
@@ -91,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php if (isset($error)): ?>
             <p class="text-red-600"><?php echo $error; ?></p>
         <?php endif; ?>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2" for="username">Username</label>
                 <input type="text" name="username" value="<?php echo $user['username']; ?>" class="w-full px-3 py-2 border rounded" required>
@@ -99,6 +106,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2" for="email">Email</label>
                 <input type="email" name="email" value="<?php echo $user['email']; ?>" class="w-full px-3 py-2 border rounded" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="image">Profile Picture</label>
+                <input type="file" name="image" class="w-full px-3 py-2 border rounded" placeholder="Profile Picture">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="description">Description</label>
+                <input type="text" name="description" value="<?php echo $user['description']; ?>" class="w-full px-3 py-2 border rounded" >
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2" for="password">Password (Leave blank to keep current password)</label>

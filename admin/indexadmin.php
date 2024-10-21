@@ -118,7 +118,7 @@ if (!$result) {
                 </ul>
             </div>
             <div class="flex items-center gap-6"> 
-                <a href="/eventuser/logout.php" class="bg-[#7E60BF] text-white px-5 py-2 rounded-full hover:bg-[#CDC1FF]">Log Out</a>
+                <a href="../logout.php" class="bg-[#7E60BF] text-white px-5 py-2 rounded-full hover:bg-[#CDC1FF]">Log Out</a>
                 <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-2xl cursor-pointer md:hidden"></ion-icon>
             </div>
     </header>
@@ -128,8 +128,9 @@ if (!$result) {
         function onToggleMenu(e){
             e.name = e.name === 'menu' ? 'close' : 'menu'
             navLinks.classList.toggle('top-[9%]')
-        }
-    </script>
+            navLinks.classList.toggle('z-50')
+        }
+    </script>
     <div class="container mx-auto px-4">
         <div class="text-center my-8">
     <h2 class="text-3xl font-bold text-purple-700 mb-2 flex items-center justify-center">
