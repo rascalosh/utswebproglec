@@ -23,7 +23,7 @@ $result = $conn->query($query);
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </head>
-<body class="font-[Poppins] bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] h-screen text-gray-900 flex flex-col">
+<body class="font-[Poppins] bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] min-h-screen text-gray-900 flex flex-col">
     <header class="bg-[#FFE1FF] py-3">
         <nav class="flex justify-between items-center w-[92%] mx-auto">
             <div>
@@ -57,7 +57,11 @@ $result = $conn->query($query);
     </script>
 <!-- Event List -->
 <div class="container mx-auto mt-8">
-    <h1 class="text-3xl font-bold text-center mb-6">Available Events</h1>
+    <h2 class="text-3xl font-bold text-purple-700 mb-2 flex items-center justify-center">
+        <ion-icon name="calendar" class="mr-2 text-xl"></ion-icon>
+        Available Events
+    </h2>
+    <p class="text-gray-600 mb-4 text-center">Discover and Join Exciting Events Around You!</p>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <?php while ($event = $result->fetch_assoc()) { ?>
         <div class="bg-white rounded-lg shadow-lg p-6">
