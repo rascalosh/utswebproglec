@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['usertype'] = $user['usertype'];
             if ($_SESSION['usertype'] == 'user') {
-                header("Location: index.php");
+                h6eader("Location: index.php");
             } else if ($_SESSION['usertype'] == 'admin') {
                 header("Location: ./admin/indexadmin.php");
             }
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] flex items-center justify-center min-h-screen">
 
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 class="text-2xl font-bold mb-6 text-center">Login</h1>
