@@ -68,7 +68,7 @@ $result = $stmt->get_result();
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
 </head>
-<body class="font-[Poppins] bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] h-screen text-gray-900 flex flex-col justify-between">
+<body class="font-[Poppins] bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] min-h-screen text-gray-900 flex flex-col justify-between">
 <header class="bg-[#FFE1FF] py-3 fixed top-0 left-0 w-full z-50">
     <nav class="flex justify-between items-center w-[92%] mx-auto">
         <div>
@@ -93,9 +93,6 @@ $result = $stmt->get_result();
         </div>
     </nav>
 </header>
-
-
-
     <script>
         const navLinks = document.querySelector('.nav-links')
         function onToggleMenu(e){
@@ -103,7 +100,6 @@ $result = $stmt->get_result();
             navLinks.classList.toggle('top-[9%]')
         }
     </script>
-
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl mx-auto mt-20">
         <h1 class="text-2xl font-bold mb-4 text-center">Registered Users</h1>
         <table class="min-w-full bg-white border border-gray-300">
