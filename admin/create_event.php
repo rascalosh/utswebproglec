@@ -63,9 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_event'])) {
         }
     </style>
 </head>
-<body class="font-[Poppins] bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] text-gray-900">
-    
-    <!-- Navbar -->
+<body class="font-[Poppins] bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] min-h-screen text-gray-900 flex flex-col">
     <header class="bg-[#FFE1FF] py-3">
         <nav class="flex justify-between items-center w-[92%] mx-auto">
             <div>
@@ -90,7 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_event'])) {
             </div>
         </nav>
     </header>
-
     <script>
         const navLinks = document.querySelector('.nav-links');
         function onToggleMenu(e){
@@ -98,9 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_event'])) {
             navLinks.classList.toggle('top-[9%]');
         }
     </script>
-
     <!-- Main Content -->
-    <main>
+    <main >
         <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg mx-auto mt-8">
             <h1 class="text-2xl font-bold mb-6 text-center flex items-center justify-center space-x-2">
                 <ion-icon name="add-circle" class="text-3xl text-indigo-600"></ion-icon>
