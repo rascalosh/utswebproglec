@@ -24,11 +24,11 @@ if (isset($_GET['id'])) {
             $date = $_POST['date'];
             $time = $_POST['time'];
             $location = $_POST['location'];
+            $location_details = $_POST['location_details'];
             $description = $_POST['description'];
+            $details = $_POST['details'];
             $max_participants = $_POST['max_participants'];
             $status = $_POST['status'];
-
-            // Use existing image and banner paths if no new files are uploaded
             $image_path = $event['image_path'];
             $banner_path = $event['banner_path'];
 
@@ -45,8 +45,8 @@ if (isset($_GET['id'])) {
             }
 
             // Update event in the database
-            $stmt = $conn->prepare("UPDATE events SET name = ?, date = ?, time = ?, location = ?, description = ?, max_participants = ?, image_path = ?, banner_path = ?, status = ? WHERE id = ?");
-            $stmt->bind_param("sssssisssi", $name, $date, $time, $location, $description, $max_participants, $image_path, $banner_path, $status, $event_id);
+            $stmt = $conn->prepare("UPDATE events SET name = ?, date = ?, time = ?, location = ?, location_details = ?, description = ?, details = ?, max_participants = ?, image_path = ?, banner_path = ?, status = ? WHERE id = ?");
+            $stmt->bind_param("sssssssisssi", $name, $date, $time, $location, $location_details, $description, $details, $max_participants, $image_path, $banner_path, $status, $event_id);
             $stmt->execute();
 
             echo "Event updated successfully!";
@@ -105,8 +105,16 @@ if (isset($_GET['id'])) {
                 <input type="text" name="location" value="<?php echo $event['location'] ?? ''; ?>" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
             </div>
             <div>
+                <label class="block text-sm font-medium text-gray-700">Location Details</label>
+                <input type="text" name="location_details" value="<?php echo $event['location_details'] ?? ''; ?>" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+            </div>
+            <div>
                 <label class="block text-sm font-medium text-gray-700">Description</label>
                 <textarea name="description" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"><?php echo $event['description'] ?? ''; ?></textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Details</label>
+                <textarea name="details" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"><?php echo $event['details'] ?? ''; ?></textarea>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Max Participants</label>
