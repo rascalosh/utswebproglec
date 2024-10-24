@@ -98,31 +98,35 @@ if (!$result) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </head>
-<body class="font-[Poppins] bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] min-h-screen text-gray-900 flex flex-col">
-    <header class="bg-[#FFE1FF] py-3">
-        <nav class="flex justify-between items-center w-[92%] mx-auto">
-            <div>
-                <img class="w-20" src="assets/baileo3.png" alt="...">
-            </div>
-            <div class="nav-links duration-500 md:static absolute bg-[#FFE1FF] md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
-                <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
-                    <li>
-                        <a class="text-gray-700 hover:text-pink-900 transition duration-100 ease-in-out" href="indexadmin.php">Dashboard</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-700 hover:text-pink-900 transition duration-100 ease-in-out" href="create_event.php">Create Event</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-700 hover:text-pink-900 transition duration-100 ease-in-out" href="user_management.php">Manage Users</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="flex items-center gap-6"> 
-                <a href="../logout.php" class="bg-[#7E60BF] text-white px-5 py-2 rounded-full hover:bg-[#CDC1FF]">Log Out</a>
-                <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-2xl cursor-pointer md:hidden"></ion-icon>
-            </div>
-    </header>
+<body class="font-[Poppins] bg-gradient-to-t from-[#E0EAF9] to-[#F4F7FC] min-h-screen text-gray-900 flex flex-col">
+           <!-- Header Template Ke -->
+<header class="bg-[#3A3D99] py-3 shadow-lg mb-10">
+    <nav class="flex justify-between items-center w-[92%] mx-auto">
+        <div>
+            <a href="indexadmin.php"><img class="w-20" src="assets/baileo3.png" alt="..."></a>
+        </div>
+        <div class="nav-links duration-500 md:static absolute bg-[#3A3D99] md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5"> <!-- Changed to solid blue -->
+            <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
+                <li>
+                    <a class="text-white hover:text-yellow-300 transition duration-200 ease-in-out" href="indexadmin.php">Dashboard</a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-yellow-300 transition duration-200 ease-in-out" href="create_event.php">Create Event</a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-yellow-300 transition duration-200 ease-in-out" href="user_management.php">Manage Users</a>
+                </li>
+            </ul>
+        </div>
 
+        <div class="flex items-center gap-6"> 
+            <a href="../logout.php" class="bg-gradient-to-r from-[#243c9a] via-[#7e22ce] to-[#ec4899] text-white px-6 py-3 rounded-full shadow-md text-lg font-bold tracking-wide uppercase transition-transform transform hover:scale-105 hover:shadow-lg hover:from-[#1e3a8a] hover:via-[#6b21a8] hover:to-[#db2777] duration-300 ease-in-out">
+                Log Out
+            </a>
+            <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-2xl text-white cursor-pointer md:hidden"></ion-icon>
+        </div>
+    </nav>
+</header>
     <script>
         const navLinks = document.querySelector('.nav-links')
         function onToggleMenu(e){
@@ -133,17 +137,17 @@ if (!$result) {
     </script>
     <div class="container mx-auto px-4">
         <div class="text-center my-8">
-    <h2 class="text-3xl font-bold text-purple-700 mb-2 flex items-center justify-center">
-        <ion-icon name="calendar" class="mr-2 text-xl"></ion-icon>
-        Available Events
-    </h2>
-    <p class="text-gray-600 mb-4">Manage and Oversee Events</p>
-</div>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 flex items-center justify-center">
+                <ion-icon name="calendar" class="mr-2 text-xl"></ion-icon>
+                Available Events
+            </h2>
+            <p class="text-gray-600 mb-4">Manage and Oversee Events</p>
+        </div>
 
         <div class="overflow-x-auto">
             <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
                 <thead>
-                    <tr class="bg-gray-200 text-left text-gray-600 uppercase text-sm leading-normal">
+                    <tr class="bg-gradient-to-r from-purple-500 to-purple-300 text-left text-gray-800 uppercase text-sm leading-normal">
                         <th class="py-3 px-6">Event Name</th>
                         <th class="py-3 px-6">Date</th>
                         <th class="py-3 px-6">Time</th>
@@ -158,35 +162,34 @@ if (!$result) {
                 <tbody class="text-gray-600 text-sm">
                     <?php if ($result->num_rows > 0) : ?>
                         <?php while ($event = $result->fetch_assoc()) : ?>
-                            <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                <td class="py-3 px-6"><?php echo $event['name']; ?></td>
-                                <td class="py-3 px-6"><?php echo $event['date']; ?></td>
-                                <td class="py-3 px-6"><?php echo $event['time']; ?></td>
-                                <td class="py-3 px-6"><?php echo $event['location']; ?></td>
-                                <td class="py-3 px-6"><?php echo $event['status']; ?></td>
-                                <td class="py-3 px-6"><?php echo $event['total_registrants'] ,'/', $event['max_participants']; ?></td>
+                            <tr class="border-b border-gray-200 hover:bg-purple-50 transition duration-150 ease-in-out">
+                                <td class="py-3 px-6"><?php echo htmlspecialchars($event['name']); ?></td>
+                                <td class="py-3 px-6"><?php echo htmlspecialchars($event['date']); ?></td>
+                                <td class="py-3 px-6"><?php echo htmlspecialchars($event['time']); ?></td>
+                                <td class="py-3 px-6"><?php echo htmlspecialchars($event['location']); ?></td>
+                                <td class="py-3 px-6"><?php echo htmlspecialchars($event['status']); ?></td>
+                                <td class="py-3 px-6"><?php echo htmlspecialchars($event['total_registrants']) . '/' . htmlspecialchars($event['max_participants']); ?></td>
                                 <td class="py-3 px-6">
-                                    <img src="<?php echo $event['image_path']; ?>" class="w-24 h-auto rounded-lg" alt="Event Image">
+                                    <img src="<?php echo htmlspecialchars($event['image_path']); ?>" class="w-24 h-auto rounded-lg shadow-sm" alt="Event Image">
                                 </td>
                                 <td class="py-3 px-6">
-                                    <img src="<?php echo $event['banner_path']; ?>" class="w-24 h-auto rounded-lg" alt="Event Banner">
+                                    <img src="<?php echo htmlspecialchars($event['banner_path']); ?>" class="w-24 h-auto rounded-lg shadow-sm" alt="Event Banner">
                                 </td>
                                 <td class="py-3 px-6">
                                     <div class="flex items-center space-x-3">
                                         <form action="edit_event.php" method="get" class="inline">
-                                            <input type="hidden" name="id" value="<?php echo $event['id']; ?>">
-                                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($event['id']); ?>">
+                                            <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition duration-150">
                                                 Edit
                                             </button>
                                         </form>
                                         <form action="indexadmin.php" method="get" class="inline" onsubmit="return confirm('Are you sure you want to delete this event?');">
-                                            <input type="hidden" name="delete_id" value="<?php echo $event['id']; ?>">
-                                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Delete</button>
+                                            <input type="hidden" name="delete_id" value="<?php echo htmlspecialchars($event['id']); ?>">
+                                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-150">Delete</button>
                                         </form>
-
                                         <form action="view_participant.php" method="get" class="inline">
-                                            <input type="hidden" name="id" value="<?php echo $event['id']; ?>">
-                                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($event['id']); ?>">
+                                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-150">
                                                 View Participant
                                             </button>
                                         </form>
@@ -196,13 +199,12 @@ if (!$result) {
                         <?php endwhile; ?>
                     <?php else : ?>
                         <tr>
-                            <td colspan="9" class="text-center py-6">No events found.</td>
+                            <td colspan="9" class="text-center py-6 text-gray-500">No events found.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
-        </div>
-
+</div>
         <?php if ($showModal): ?>
         <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
             <div class="bg-white rounded-lg p-6 w-80">
@@ -214,36 +216,33 @@ if (!$result) {
             </div>
         </div>
         <?php endif; ?>
-
-        
-        <div class="mt-4 flex justify-between">
+        <div class="mt-4 flex justify-between items-center">
             <?php if ($page > 1 && $total_pages > 1): ?>
-                <a href="?page=<?php echo $page - 1; ?>" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400">
+                <a href="?page=<?php echo $page - 1; ?>" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg transition duration-300 transform hover:scale-105 hover:shadow-lg">
                     Previous
                 </a>
             <?php else: ?>
                 <span class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg cursor-not-allowed">Previous</span>
             <?php endif; ?>
 
-            <span>Page <?php echo $page; ?> of <?php echo $total_pages; ?></span>
+            <span class="text-gray-800 font-semibold">Page <?php echo $page; ?> of <?php echo $total_pages; ?></span>
 
             <?php if ($page < $total_pages && $total_pages > 1): ?>
-                <a href="?page=<?php echo $page + 1; ?>" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400">
+                <a href="?page=<?php echo $page + 1; ?>" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg transition duration-300 transform hover:scale-105 hover:shadow-lg">
                     Next
                 </a>
             <?php else: ?>
                 <span class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg cursor-not-allowed">Next</span>
             <?php endif; ?>
         </div>
-
-
         <div class="flex-col space-y-1 mt-5">
             <div class="mb-5">
                 
             </div>
         </div>
     </div>
-    <footer class="bg-[#FFE1FF] text-gray-700 py-6 mt-auto">
+<!-- Footer -->
+    <footer class="bg-[#3A3D99] text-gray-100 py-6 mt-auto">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="text-center md:text-left">
@@ -251,14 +250,12 @@ if (!$result) {
                 </div>
 
                 <div class="flex gap-4 mt-4 md:mt-0">
-                    <a href="#" class="text-gray-600 hover:text-gray-900"><ion-icon name="logo-facebook" class="text-xl"></ion-icon></a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900"><ion-icon name="logo-twitter" class="text-xl"></ion-icon></a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900"><ion-icon name="logo-instagram" class="text-xl"></ion-icon></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><ion-icon name="logo-facebook" class="text-xl"></ion-icon></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><ion-icon name="logo-twitter" class="text-xl"></ion-icon></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><ion-icon name="logo-instagram" class="text-xl"></ion-icon></a>
                 </div>
             </div>
         </div>
     </footer>
-
-
 </body>
 </html>
