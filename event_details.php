@@ -64,30 +64,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </head>
-<body class="font-[Poppins] bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] min-h-screen text-gray-900 flex flex-col">
-    <header class="bg-[#FFE1FF] py-3">
-        <nav class="flex justify-between items-center w-[92%] mx-auto">
-            <div>
-                <img class="w-20" src="assets/baileo3.png" alt="...">
-            </div>
-            <div class="nav-links duration-500 md:static absolute bg-[#FFE1FF] md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
-                <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
-                    <li>
-                        <a class="text-gray-700 hover:text-pink-900 transition duration-100 ease-in-out" href="index.php">Events</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-700 hover:text-pink-900 transition duration-100 ease-in-out" href="registered_events.php">Registered Event</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-700 hover:text-pink-900 transition duration-100 ease-in-out" href="profile.php">My Profile</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="flex items-center gap-6"> 
-                <a href="logout.php" class="bg-[#7E60BF] text-white px-5 py-2 rounded-full hover:bg-[#CDC1FF]">Log Out</a>
-                <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-2xl cursor-pointer md:hidden"></ion-icon>
-            </div>
-    </header>
+<body class="font-[Poppins] bg-gradient-to-t from-[#E0EAF9] to-[#F4F7FC] min-h-screen text-gray-900 flex flex-col">
+    <!-- Header Template Ke -->
+<header class="bg-[#3A3D99] py-3 shadow-lg">
+    <nav class="flex justify-between items-center w-[92%] mx-auto">
+        <div>
+            <a href="index.php"><img class="w-20" src="assets/baileo3.png" alt="..."></a>
+        </div>
+        <div class="nav-links duration-500 md:static absolute bg-[#3A3D99] md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5"> <!-- Changed to solid blue -->
+            <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
+                <li>
+                    <a class="text-white hover:text-yellow-300 transition duration-200 ease-in-out" href="index.php">Events</a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-yellow-300 transition duration-200 ease-in-out" href="registered_events.php">Registered Event</a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-yellow-300 transition duration-200 ease-in-out" href="profile.php">My Profile</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="flex items-center gap-6"> 
+            <a href="logout.php" class="bg-gradient-to-r from-[#243c9a] via-[#7e22ce] to-[#ec4899] text-white px-6 py-3 rounded-full shadow-md text-lg font-bold tracking-wide uppercase transition-transform transform hover:scale-105 hover:shadow-lg hover:from-[#1e3a8a] hover:via-[#6b21a8] hover:to-[#db2777] duration-300 ease-in-out">
+                Log Out
+            </a>
+            <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-2xl text-white cursor-pointer md:hidden"></ion-icon>
+        </div>
+    </nav>
+</header>
     <script>
         const navLinks = document.querySelector('.nav-links')
         function onToggleMenu(e){
@@ -96,18 +101,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
         }
     </script>
 
-
 <div class="container mx-auto mt-8">
     <div class="bg-white rounded-lg shadow-lg p-6">
         <img src="<?php echo './admin/', $event['banner_path']; ?>" alt="Banner Image" class="w-full h-64 object-cover rounded-t-lg">
         <h1 class="text-3xl font-bold mt-4"><?php echo $event['name']; ?></h1>
-        <p class="text-gray-600 mt-2"><?php echo $event['description']; ?></p>
-        <p class="text-sm text-gray-500 mt-2">Location: <?php echo $event['location']; ?></p>
-        <p class="text-sm text-gray-500 mt-2">Date: <?php echo $event['date']; ?></p>
-        <p class="text-sm text-gray-500 mt-2">Time: <?php echo $event['time']; ?></p>
+        <p class="text-gray-800 mt-2"><?php echo $event['description']; ?></p>
+        <p class="text-sm font-bold text-blue-900 uppercase"><ion-icon name="pin"></ion-icon> <?php echo strtoupper($event['location']); ?></p>
+        <p class="text-sm text-gray-500 mt-0 mx-5"><?php echo $event['location_details']; ?></p>
+        <p class="text-sm font-bold text-blue-900 mt-2""><ion-icon name="calendar"></ion-icon><span class="ml-1"><?php $date = $event['date']; $date_name = date('j F Y', strtotime($date)); echo $date_name;?></p>
+        <p class="text-sm text-blue-900 mt-0"><ion-icon name="clock"></ion-icon><span class="ml-1"><?php $time = date('H.i', strtotime($event['time'])); echo $time . " WIB"; ?></span></p>
         <form method="post" class="mt-4">
-            <button type="submit" name="register" class="bg-purple-600 text-white py-2 px-4 rounded">Register</button>
+            <div class="flex items-center bg-white border rounded-lg p-3 w-full md:w-1/2 mx-auto transition-all duration-300 hover:shadow-lg transform hover:scale-105">
+                <span class="text-gray-700 text-lg font-semibold flex-grow">Secure Your Spot Today!</span>
+                <button type="submit" name="register" class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-2 px-8 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-xl border border-transparent hover:border-indigo-300">
+                    Join Now
+                </button>
+            </div>
         </form>
+        <p class="text-lg font-bold text-blue-900 mt-4">About this experience</p>
+        <p class="text-gray-600 mt-1 text-sm"><?php echo $event['details']; ?></p>
+        
     </div>
 </div>
 
@@ -128,7 +141,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             </div>
         </div>
     </div>
-    <footer class="bg-[#FFE1FF] text-gray-700 py-6 mt-auto">
+    <!-- Footer -->
+    <footer class="bg-[#3A3D99] text-gray-100 py-6 mt-auto">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="text-center md:text-left">
@@ -136,12 +150,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
                 </div>
 
                 <div class="flex gap-4 mt-4 md:mt-0">
-                    <a href="#" class="text-gray-600 hover:text-gray-900"><ion-icon name="logo-facebook" class="text-xl"></ion-icon></a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900"><ion-icon name="logo-twitter" class="text-xl"></ion-icon></a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900"><ion-icon name="logo-instagram" class="text-xl"></ion-icon></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><ion-icon name="logo-facebook" class="text-xl"></ion-icon></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><ion-icon name="logo-twitter" class="text-xl"></ion-icon></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><ion-icon name="logo-instagram" class="text-xl"></ion-icon></a>
                 </div>
             </div>
         </div>
     </footer>
+
 </body>
 </html>
